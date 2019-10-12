@@ -41,7 +41,8 @@ function AnimatedResolver(component) {
         onmatch: function() {
             return new Promise((resolve, reject) => {
                 if (window.navVivus) {
-                    window.navVivus.play(-1.5, () => resolve(component))
+                    window.navVivus.type = "sync";
+                    window.navVivus.play(-1.3, () => resolve(component))
                 } else resolve(component)
             });
         },

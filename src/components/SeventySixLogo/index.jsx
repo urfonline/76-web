@@ -9,12 +9,11 @@ export default class SeventySixLogo {
 
     oncreate(vnode) {
         this.vivus = new Vivus(vnode.dom, {
-            duration: 100,
-            type: 'sync',
+            duration: 120,
+            type: 'oneByOne',
             start: 'manual',
-            animTimingFunction: Vivus.LINEAR,
+            animTimingFunction: Vivus.EASE,
             pathTimingFunction: Vivus.EASE,
-            reverseStack: true,
         });
 
         window.navVivus = this.vivus;

@@ -35,6 +35,7 @@ module.exports = {
                     options: {
                         template: svgrTemplate,
                         babel: false,
+                        svgo: false,
                     }
                 }
             ]
