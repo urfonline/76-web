@@ -31,6 +31,7 @@
     "mithril": "^2.0.4",
     "mithril-redux": "^1.0.0",
     "redux": "^4.0.4",
+    "simplex-noise": "^2.4.0",
     "vivus": "^0.4.5"
   }
 }

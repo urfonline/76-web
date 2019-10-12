@@ -4,10 +4,12 @@ import './style.css';
 
 import Navbar from "./components/Navbar";
 import Splash from "./components/Splash";
+import BackgroundPlate from "./components/BackgroundPlate";
 
 class Homepage {
     view() {
         return <div class="container">
+            <BackgroundPlate/>
             <Navbar/>
             <div class="block">
                 <Splash/>
@@ -41,7 +43,6 @@ function AnimatedResolver(component) {
         onmatch: function() {
             return new Promise((resolve, reject) => {
                 if (window.navVivus) {
-                    window.navVivus.type = "sync";
                     window.navVivus.play(-1.3, () => resolve(component))
                 } else resolve(component)
             });
