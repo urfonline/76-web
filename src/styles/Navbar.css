@@ -1,0 +1,25 @@
+.navbar {
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #666;
+    background: #fff;
+}
+
+.navbar > .logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 50px 0 20px;
+}
+
+.navbar > a {
+    text-decoration: none;
+    color: #000;
+    transition: color .25s;
+    margin-right: 15px;
+}
+
+.navbar > a:hover {
+    color: #10aded;
+}

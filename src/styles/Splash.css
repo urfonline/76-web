@@ -1,0 +1,52 @@
+.splash {
+    position: relative;
+    width: 100%;
+    margin: 15px 0 70px;
+}
+
+.splash h1.line {
+    position: relative;
+    display: inline-block;
+    font-family: 'Avalon', sans-serif;
+    font-weight: 700;
+    font-size: 208px;
+    margin: 5px 0;
+    left: 100px;
+    line-height: 150px;
+    opacity: 1;
+    z-index: -10;
+    background-color: #ff2fa4;
+}
+
+.splash p {
+    position: absolute;
+    display: inline-block;
+    right: 5px;
+    bottom: 5px;
+    margin: 0;
+    max-width: 200px;
+    font-family: 'Bitter', serif;
+    font-size: 30px;
+    text-align: right;
+    background: #fff;
+    padding: 10px;
+}
+
+.splash .urf-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.splash .urf-link:after {
+    position: relative;
+    display: block;
+    content: '';
+    width: 0;
+    height: 4px;
+    background: #b02727;
+    transition: width .25s;
+}
+
+.splash .urf-link:hover:after {
+    width: 100%;
+}

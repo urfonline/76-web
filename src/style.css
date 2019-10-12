@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter:400,700&display=swap');
+
+@import "styles/Variables.css";
+@import "styles/Container.css";
+@import "styles/Navbar.css";
+@import "styles/Splash.css";
+
+@font-face {
+    font-family: Avalon;
+    font-weight: 700;
+    src: url("fonts/Avalon Bold.ttf") format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: 'Bitter', serif;
+}
+
+::selection {
+    background: var(--text-selection-color);
+}
+
+::-moz-selection {
+    background: var(--text-selection-color);
+}
+
+.urf-red {
+    color: rgb(176, 39, 39);
+}
