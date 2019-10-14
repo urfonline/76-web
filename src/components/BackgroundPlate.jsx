@@ -83,10 +83,19 @@ class DynamicBackground {
 
     oninit() {
         this.redraw();
+
+        this.onresize = function(ev) {
+            this.redraw();
+            m.redraw();
+        }.bind(this);
+
+        window.addEventListener("resize", this.onresize);
     }
 
     onremove() {
         this.lines = [];
+
+        window.removeEventListener("resize", this.onresize);
     }
 }
 
