@@ -5,6 +5,7 @@ import './style.css';
 import Navbar from "./components/Navbar";
 import Splash from "./components/Splash";
 import BackgroundPlate from "./components/BackgroundPlate";
+import PodcastGallery from "./components/PodcastGallery";
 
 class Homepage {
     view() {
@@ -13,6 +14,7 @@ class Homepage {
             <Navbar/>
             <div class="block">
                 <Splash/>
+                <PodcastGallery/>
             </div>
         </div>
     }
@@ -21,6 +23,7 @@ class Homepage {
 class AboutPage {
     view() {
         return <div class="container">
+            <BackgroundPlate/>
             <Navbar/>
             <div class="block">
                 <p>

@@ -5,6 +5,7 @@
 @import "styles/Container.css";
 @import "styles/Navbar.css";
 @import "styles/Splash.css";
+@import "styles/PodcastGallery.css";
 
 @font-face {
     font-family: Avalon;
