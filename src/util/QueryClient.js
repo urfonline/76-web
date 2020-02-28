@@ -3,7 +3,7 @@ import Stream from "mithril/stream";
 
 let QUERY_URL = "http://esther.local:8000/graphql";
 
-export function useQuery(query) {
+export function useQuery(query, variables = {}) {
     let stream = Stream({});
 
     function run() {
@@ -13,6 +13,7 @@ export function useQuery(query) {
             body: {
                 query: query.loc.source.body,
                 operationName: query.definitions[0].name.value,
+                variables: variables,
             },
             responseType: "json",
             deserialize: res => res.data

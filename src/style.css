@@ -6,6 +6,7 @@
 @import "styles/Navbar.css";
 @import "styles/Splash.css";
 @import "styles/PodcastGallery.css";
+@import "styles/Podcast.css";
 
 @font-face {
     font-family: Avalon;

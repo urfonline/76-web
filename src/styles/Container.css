@@ -14,3 +14,7 @@
     padding: 10px;
     border-bottom: 3px solid var(--brand-pink);
 }
+
+.block.filled {
+    background: #fff;
+}

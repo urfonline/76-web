@@ -6,6 +6,10 @@ import Navbar from "./components/Navbar";
 import Splash from "./components/Splash";
 import BackgroundPlate from "./components/BackgroundPlate";
 import PodcastGallery from "./components/PodcastGallery";
+import Podcast from "./components/Podcast";
+
+import {useQuery} from "./util/QueryClient";
+import QPodcast from "./queries/podcast.gql";
 
 class Homepage {
     view() {
@@ -26,7 +30,7 @@ class AboutPage {
         return <div class="container">
             <BackgroundPlate/>
             <Navbar/>
-            <div class="block">
+            <div class="block filled">
                 <p>
                     76 Podcasting is run by the same team that runs University Radio Falmer
                     <br/>
@@ -42,20 +46,27 @@ class AboutPage {
     }
 }
 
-function AnimatedResolver(component) {
+function PodcastPage(vnode) {
+    let [stream, run] = useQuery(QPodcast, { slug: vnode.attrs.slug });
+
+    let podcast = stream.map(data => data.podcast);
+
     return {
-        onmatch: function() {
-            return new Promise((resolve, reject) => {
-                if (window.navVivus) {
-                    window.navVivus.play(-1.3, () => resolve(component))
-                } else resolve(component)
-            });
-        },
-        render: (vnode) => [vnode]
+        oninit: run,
+        view(vnode) {
+            return <div class="container">
+                <BackgroundPlate/>
+                <Navbar/>
+                <div class="block">
+                    {podcast() ? m(Podcast, podcast()) : <span>Loading...</span>}
+                </div>
+            </div>
+        }
     }
 }
 
 m.route(document.body, "/home", {
-    "/home": AnimatedResolver(Homepage),
-    "/about": AnimatedResolver(AboutPage),
+    "/home": Homepage,
+    "/about": AboutPage,
+    "/podcast/:slug": PodcastPage,
 });
