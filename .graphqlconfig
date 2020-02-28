@@ -1,0 +1,12 @@
+{
+  "name": "URF API Schema",
+  "schemaPath": "./schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "URF Local": {
+        "url": "http://esther.local:8000/graphql",
+        "introspect": true
+      }
+    }
+  }
+}
