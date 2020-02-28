@@ -23,7 +23,7 @@
     grid-column-end: span 2;
 }
 
-.podcast > img {
+.podcast img {
     max-width: 100%;
 }
 
