@@ -32,12 +32,16 @@
   }
 }
 
+.podcast-episodes {
+  margin-left: -10px;
+}
+
 .podcast-episode {
   display: block;
   padding: 10px;
   border-bottom: 1px solid #000;
   border-left: 0 solid var(--brand-purple);
-  transition: background-color .25s, border-left-width .07s;
+  transition: background-color .25s, border-left-width .085s;
   cursor: pointer;
 }
 
@@ -46,7 +50,7 @@
 }
 
 .podcast-episode.open, .podcast-episode:hover {
-  border-left: 3px solid var(--brand-purple);
+  border-left: 4px solid var(--brand-purple);
 }
 
 .podcast-episode > span {

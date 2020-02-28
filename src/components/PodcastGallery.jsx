@@ -7,8 +7,8 @@ import {useQuery} from "../util/QueryClient";
 class PodcastSquare {
     view(vnode) {
         return <div class={"podcast square"}>
-            <Link href={"/podcast/" + vnode.attrs.podcast.slug}>
-                <img src={vnode.attrs.podcast.coverUrl} alt={vnode.attrs.podcast.title} />
+            <Link href={"/podcast/" + vnode.attrs.slug}>
+                <img src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
             </Link>
         </div>
     }
@@ -23,7 +23,7 @@ export default function PodcastGallery(vnode) {
         oninit: run,
         view(vnode) {
             return <div class="podcast-gallery">
-                {allPodcasts().map(podcast => m(PodcastSquare, { podcast }))}
+                {allPodcasts().map(podcast => m(PodcastSquare, { ...podcast, key: podcast.slug }))}
             </div>
         }
     }

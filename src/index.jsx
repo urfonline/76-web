@@ -58,7 +58,7 @@ function PodcastPage(vnode) {
                 <BackgroundPlate/>
                 <Navbar/>
                 <div class="block">
-                    {podcast() ? m(Podcast, podcast()) : <span>Loading...</span>}
+                    {podcast() ? m(Podcast, podcast()) : <h1>Loading...</h1>}
                 </div>
             </div>
         }
