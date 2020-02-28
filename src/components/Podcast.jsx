@@ -1,4 +1,5 @@
 import m from "mithril";
+import {connect} from "../util/ReduxAdapter";
 
 class PodcastEpisode {
     view(vnode) {
@@ -8,12 +9,13 @@ class PodcastEpisode {
             <span class="duration">{vnode.attrs.duration}</span>
             {vnode.attrs.open && <div class="extra">
                 <p>{vnode.attrs.description}</p>
+                <button onclick={vnode.attrs.handlePlay}>Play Episode</button>
             </div>}
         </div>
     }
 }
 
-export default class Podcast {
+class Podcast {
     constructor() {
         this.accordion = 0;
     }
@@ -33,6 +35,9 @@ export default class Podcast {
                             handleClick() {
                                 vnode.state.accordion = i;
                             },
+                            handlePlay() {
+                                vnode.attrs.dispatch({ type: "SET_EPISODE", episode: ep })
+                            }
                         })
                     )}
                 </div>
@@ -40,3 +45,5 @@ export default class Podcast {
         </div>
     }
 }
+
+export default connect((_state) => ({}))(Podcast);

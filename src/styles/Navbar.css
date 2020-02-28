@@ -23,3 +23,8 @@
 .navbar > a:hover {
     color: #10aded;
 }
+
+.navbar .player-info {
+    display: inline-block;
+    text-align: right;
+}
