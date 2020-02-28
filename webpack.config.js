@@ -25,6 +25,10 @@ module.exports = {
             exclude: /\/node_modules\//,
             loader: 'babel-loader',
         }, {
+            test: /\.g(raph)?ql$/,
+            exclude: /\/node_modules\//,
+            loader: 'graphql-tag/loader',
+        }, {
             test: /\.svg$/,
             use: [
                 {
