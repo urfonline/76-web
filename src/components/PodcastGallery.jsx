@@ -1,5 +1,13 @@
 import m from "mithril";
 
+class PodcastSquare {
+    view(vnode) {
+        return <div class={"podcast " + vnode.attrs.podcast.ratio}>
+            <img src={vnode.attrs.podcast.coverUrl} alt={vnode.attrs.podcast.title} />
+        </div>
+    }
+}
+
 export default class PodcastGallery {
     constructor() {
         this.podcasts = [];
@@ -7,15 +15,7 @@ export default class PodcastGallery {
 
     view(vnode) {
         return <div class="podcast-gallery">
-            <div class="podcast tall">
-
-            </div>
-            <div class="podcast wide">
-
-            </div>
-            <div class="podcast square">
-
-            </div>
+            {vnode.state.podcasts.map((podcast) => m(PodcastSquare, { podcast }))}
         </div>
     }
 }

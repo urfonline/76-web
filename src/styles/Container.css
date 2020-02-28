@@ -6,3 +6,11 @@
     padding: 0 20px;
     box-sizing: border-box;
 }
+
+.container h1 {
+    display: inline-block;
+    font-size: 36px;
+    background: #fff;
+    padding: 10px;
+    border-bottom: 3px solid var(--brand-pink);
+}

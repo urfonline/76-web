@@ -9,10 +9,10 @@
     grid-column-end: span 1;
     grid-row-start: auto;
     grid-row-end: span 1;
+    height: auto;
 
-    background: #ddd;
-    border: 1px solid red;
-    height: 1fr;
+    transition: transform .25s;
+    -webkit-transition: transform .25s;
 }
 
 .podcast.tall {
@@ -21,4 +21,15 @@
 
 .podcast.wide {
     grid-column-end: span 2;
+}
+
+.podcast > img {
+    max-width: 100%;
+}
+
+.podcast:hover {
+    --scale-amount: 1.03;
+
+    transform: scale(var(--scale-amount), var(--scale-amount));
+    -webkit-transform: scale(var(--scale-amount), var(--scale-amount));
 }

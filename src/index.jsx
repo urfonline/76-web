@@ -14,6 +14,7 @@ class Homepage {
             <Navbar/>
             <div class="block">
                 <Splash/>
+                <h1>Podcasts</h1>
                 <PodcastGallery/>
             </div>
         </div>
