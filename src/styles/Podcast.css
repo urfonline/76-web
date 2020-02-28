@@ -1,7 +1,3 @@
-.podcast-page {
-
-}
-
 .podcast-content {
   background: #fff;
   padding: 10px;
@@ -12,37 +8,59 @@
   display: inline;
 }
 
-.podcast-content img.float-right {
-  float: right;
-  display: inline;
-  max-width: 40%;
-  max-height: 100%;
+.podcast-content img {
+  max-width: 100%;
 }
 
-.podcast-episodes {
-  width: 60%;
+@media (min-width: 900px) {
+  .podcast-content img.float-right {
+    float: right;
+    display: inline;
+    max-width: 40%;
+    max-height: 100%;
+  }
+
+  .podcast-episodes {
+    width: 60%;
+  }
+}
+
+@media (max-width: 900px) {
+  .podcast-page h1 {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 .podcast-episode {
   display: block;
   padding: 10px;
   border-bottom: 1px solid #000;
-  transition: background-color .25s;
+  border-left: 0 solid var(--brand-purple);
+  transition: background-color .25s, border-left-width .07s;
   cursor: pointer;
 }
 
+.podcast-episode:hover {
+  background-color: #f0f0f0;
+}
+
 .podcast-episode.open, .podcast-episode:hover {
-  background-color: #eee;
+  border-left: 3px solid var(--brand-purple);
 }
 
 .podcast-episode > span {
   display: inline-block;
-  width: 50%;
+}
+
+.podcast-episode > span:first-child {
+  width: 90%;
 }
 
 .podcast-episode .duration {
   text-align: right;
-  color: #bbb;
+  color: #777;
+  width: 10%;
 }
 
 .podcast-episode .extra {
