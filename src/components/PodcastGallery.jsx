@@ -15,7 +15,7 @@ class PodcastSquare {
 }
 
 export default function PodcastGallery(vnode) {
-    let [stream, run] = useQuery(QPodcastGallery);
+    let [stream, run, error] = useQuery(QPodcastGallery);
 
     let allPodcasts = stream.map(data => data.allPodcasts || []);
 
@@ -24,6 +24,9 @@ export default function PodcastGallery(vnode) {
         view(vnode) {
             return <div class="podcast-gallery">
                 {allPodcasts().map(podcast => m(PodcastSquare, { ...podcast, key: podcast.slug }))}
+                {error() &&
+                    <div class="error">There was an error fetching podcasts :(</div>
+                }
             </div>
         }
     }

@@ -4,7 +4,8 @@ import Stream from "mithril/stream";
 let QUERY_URL = "http://esther.local:8000/graphql";
 
 export function useQuery(query, variables = {}) {
-    let stream = Stream({});
+    let result = Stream({});
+    let error = Stream(null);
 
     function run() {
         m.request({
@@ -17,8 +18,10 @@ export function useQuery(query, variables = {}) {
             },
             responseType: "json",
             deserialize: res => res.data
-        }).then((data) => stream(data));
+        })
+            .then((data) => result(data))
+            .catch((err) => error(err));
     }
 
-    return [stream, run];
+    return [result, run, error];
 }

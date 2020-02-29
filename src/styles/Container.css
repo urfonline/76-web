@@ -18,3 +18,9 @@
 .block.filled {
     background: #fff;
 }
+
+.error {
+    background-color: #9e1f26;
+    padding: 10px;
+    color: #fff;
+}
