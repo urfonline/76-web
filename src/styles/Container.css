@@ -54,6 +54,16 @@ a.stylish.urf-red:hover {
     color: #fff;
 }
 
+.footer {
+    background: #fff;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
 .error {
     background-color: #9e1f26;
     padding: 10px;

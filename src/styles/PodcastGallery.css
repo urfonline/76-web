@@ -27,6 +27,12 @@
     max-width: 100%;
 }
 
+.podcast.placeholder {
+    width: 100%;
+    padding-top: 100%;
+    background: #ddd;
+}
+
 .podcast:hover {
     --scale-amount: 1.03;
 

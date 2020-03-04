@@ -14,16 +14,24 @@ class PodcastSquare {
     }
 }
 
+class SquarePlaceholder {
+    view(vnode) {
+        return <div class="podcast square placeholder"></div>
+    }
+}
+
 export default function PodcastGallery(vnode) {
     let [stream, run, error] = useQuery(QPodcastGallery);
 
-    let allPodcasts = stream.map(data => data.allPodcasts || []);
+    let allPodcasts = stream.map(data => data.allPodcasts);
 
     return {
-        oninit: run,
+        oncreate: run,
         view(vnode) {
             return <div class="podcast-gallery">
-                {allPodcasts().map(podcast => m(PodcastSquare, { ...podcast, key: podcast.slug }))}
+                {allPodcasts() ?
+                    allPodcasts().map(podcast => m(PodcastSquare, { ...podcast, key: podcast.slug }))
+                    : <SquarePlaceholder/>}
                 {error() &&
                     <div class="error">There was an error fetching podcasts :(</div>
                 }
