@@ -29,6 +29,7 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
+    "fork-awesome": "^1.1.7",
     "gsap": "^2.1.3",
     "mithril": "^2.0.4",
     "redux": "^4.0.4",

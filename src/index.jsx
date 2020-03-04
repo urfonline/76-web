@@ -1,6 +1,7 @@
 import m from 'mithril';
 
 import './style.css';
+import 'fork-awesome/css/fork-awesome.min.css';
 
 import Navbar from "./components/Navbar";
 import Splash from "./components/Splash";
@@ -8,6 +9,7 @@ import BackgroundPlate from "./components/BackgroundPlate";
 import PodcastGallery from "./components/PodcastGallery";
 import Podcast from "./components/Podcast";
 import Player from "./components/Player";
+import SocialIcons from "./components/SocialIcons";
 
 import {useQuery} from "./util/QueryClient";
 import QPodcast from "./queries/podcast.gql";
@@ -25,19 +27,17 @@ class Homepage {
     }
 }
 
-class AboutPage {
+class ContactPage {
     view() {
-        return <div class="block filled">
+        return <div class="block filled contact-page">
             <p>
-                76 Podcasting is run by the same team that runs University Radio Falmer
-                <br/>
-                My money's in that office, right? If she start giving me some bullshit about it ain't there,
-                and we got to go someplace else and get it, I'm gonna shoot you in the head then and there.
-                Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is.
-                She gonna tell me too. Hey, look at me when I'm talking to you, motherfucker. You listen:
-                we go in there, and that dude Winston or anybody else is in there, you the first motherfucker
-                to get shot. You understand?
+                To apply for a show or get involved,
+                email <a class="stylish" href="mailto:podcasting@urfonline.com">podcasting@urfonline.com</a>.
             </p>
+            <p>
+                Powered by URF at <a class="stylish urf-red" href="https://urfonline.com">urfonline.com</a>
+            </p>
+            <SocialIcons/>
         </div>
     }
 }
@@ -78,6 +78,6 @@ function RootResolver(WrappedComponent) {
 
 m.route(document.body, "/home", {
     "/home": RootResolver(Homepage),
-    "/about": RootResolver(AboutPage),
+    "/contact": RootResolver(ContactPage),
     "/podcast/:slug": RootResolver(PodcastPage),
 });

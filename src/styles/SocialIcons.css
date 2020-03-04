@@ -1,0 +1,9 @@
+div.socials {
+    text-align: center;
+}
+
+.socials a.social {
+    margin-right: 10px;
+    text-align: center;
+    color: var(--brand-blue);
+}

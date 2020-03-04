@@ -1,7 +1,10 @@
 :root {
     --text-selection-color: #10aded;
     --brand-pink: #ff2fa4;
-    --brand-purple: blueviolet;
+    --brand-purple: #363fb4;
+    --brand-blue: #363fb4;
 
     --brand-pink-hover: #b73162;
+
+    --brand-urf-red: rgb(176, 39, 39);
 }

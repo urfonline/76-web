@@ -10,14 +10,18 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Seventy Six Podcasting"
+            title: "Seventy Six Podcasting",
+            meta: {
+                viewport: "width=device-width; initial-scale=1"
+            }
         }),
     ],
     devServer: {
         contentBase: './dist',
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        modules: ['node_modules'],
+        extensions: ['.js', '.jsx', '.css']
     },
     module: {
         rules: [{
@@ -30,6 +34,7 @@ module.exports = {
             loader: 'graphql-tag/loader',
         }, {
             test: /\.svg$/,
+            exclude: /\/node_modules\//,
             use: [
                 {
                     loader: 'babel-loader',
@@ -47,7 +52,7 @@ module.exports = {
             test: /\.css$/,
             loaders: ['style-loader', 'css-loader'],
         }, {
-            test: /\.ttf$/,
+            test: /\.(ttf|woff2?|eot|svg)$/,
             loader: 'file-loader',
         }]
     }

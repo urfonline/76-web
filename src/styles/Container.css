@@ -17,6 +17,44 @@
 
 .block.filled {
     background: #fff;
+    padding: 10px;
+}
+
+.contact-page {
+    font-size: 26px;
+}
+
+a.stylish {
+    color: var(--brand-blue);
+    text-decoration: none;
+    border-bottom: 3px solid var(--brand-blue);
+    background-color: transparent;
+    transition: background-color .25s, color .25s;
+}
+
+a.stylish:hover {
+    background-color: var(--brand-blue);
+    color: #fff;
+}
+
+a.stylish.urf-red {
+    color: var(--brand-urf-red);
+    border-bottom: 3px solid var(--brand-urf-red);
+}
+
+a.stylish.urf-red:hover {
+    background-color: var(--brand-urf-red);
+    color: #fff;
+}
+
+div.socials {
+    text-align: center;
+}
+
+a.social {
+    margin-right: 10px;
+    text-align: center;
+    color: var(--brand-blue);
 }
 
 .error {

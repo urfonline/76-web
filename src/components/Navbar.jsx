@@ -9,9 +9,10 @@ class Navbar {
         let { dispatch, selectedEpisode, shouldPlay } = vnode.attrs;
 
         return <div class="navbar">
-            <SeventySixLogo size={'50px'} class={"logo"}/>
-            <Link href={"/home"}>Home</Link>
-            <Link href={"/about"}>About Us</Link>
+            <Link href={"/home"}>
+                <SeventySixLogo size={'50px'} class={"logo"}/>
+            </Link>
+            <Link href={"/contact"}>Contact</Link>
             {selectedEpisode && <div class="player-info">
                 <span>{selectedEpisode.title}</span>
                 {shouldPlay ?

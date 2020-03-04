@@ -1,7 +1,7 @@
 import m from "mithril";
 import Stream from "mithril/stream";
 
-let QUERY_URL = "http://esther.local:8000/graphql";
+let QUERY_URL = "https://api.urfonline.com/graphql";
 
 export function useQuery(query, variables = {}) {
     let result = Stream({});

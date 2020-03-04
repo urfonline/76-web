@@ -33,3 +33,9 @@
     transform: scale(var(--scale-amount), var(--scale-amount));
     -webkit-transform: scale(var(--scale-amount), var(--scale-amount));
 }
+
+@media (max-width: 900px) {
+    .podcast-gallery {
+        grid-template-columns: 1fr;
+    }
+}
