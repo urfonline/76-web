@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const svgrTemplate = require("./utils/mithril-svg-template.js");
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: ['lazysizes', './src/index.jsx'],
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),

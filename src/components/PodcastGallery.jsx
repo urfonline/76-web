@@ -8,7 +8,7 @@ class PodcastSquare {
     view(vnode) {
         return <div class={"podcast square"}>
             <Link href={"/podcast/" + vnode.attrs.slug}>
-                <img src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
+                <img class="lazyload" data-src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
             </Link>
         </div>
     }

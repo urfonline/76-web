@@ -24,7 +24,7 @@ class Podcast {
         return <div class="podcast-page">
             <h1>{vnode.attrs.title}</h1>
             <div class="podcast-content">
-                <img class="float-right" src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
+                <img class="float-right lazyload" data-src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
                 <p>{vnode.attrs.description}</p>
                 <h3>Episodes</h3>
                 <div class="podcast-episodes">

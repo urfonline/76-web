@@ -31,3 +31,13 @@ body {
 .urf-red {
     color: rgb(176, 39, 39);
 }
+
+.lazyload, .lazyloading {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.lazyloaded {
+    opacity: 1;
+    transition: opacity 500ms;
+}
