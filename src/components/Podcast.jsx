@@ -26,6 +26,9 @@ class Podcast {
             <div class="podcast-content">
                 <img class="float-right lazyload" data-src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
                 <p>{vnode.attrs.description}</p>
+                <div class="podcast-links">
+                    {vnode.attrs.spotifyUrl ? <a href={vnode.attrs.spotifyUrl}>Listen on Spotify</a> : ""}
+                </div>
                 <h3>Episodes</h3>
                 <div class="podcast-episodes">
                     {vnode.attrs.episodes.map(

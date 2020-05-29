@@ -1,6 +1,6 @@
 query QPodcast($slug: String!) {
     podcast(slug: $slug) {
-        title, description, coverUrl
+        title, description, coverUrl, spotifyUrl
         episodes {
             title, description, createdAt, duration, mediaUrl
         }

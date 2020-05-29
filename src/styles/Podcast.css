@@ -12,6 +12,25 @@
   max-width: 100%;
 }
 
+.podcast-content .podcast-links {
+  margin-top: 10px;
+}
+
+.podcast-content .podcast-links a {
+  display: inline-block;
+  padding: 5px;
+  background: var(--brand-blue);
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .25s;
+}
+
+.podcast-content .podcast-links a:hover {
+  background-color: var(--brand-blue-hover);
+}
+
 @media (min-width: 900px) {
   .podcast-content img.float-right {
     float: right;
