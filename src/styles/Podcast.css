@@ -18,17 +18,27 @@
 
 .podcast-content .podcast-links a {
   display: inline-block;
+  margin: 0 5px;
   padding: 5px;
   background: var(--brand-blue);
   border: 0;
   border-radius: 3px;
   color: #fff;
   cursor: pointer;
+  text-decoration: none;
   transition: background-color .25s;
 }
 
 .podcast-content .podcast-links a:hover {
   background-color: var(--brand-blue-hover);
+}
+
+.podcast-content .podcast-links a.spotify {
+  background-color: #1db954;
+}
+
+.podcast-content .podcast-links a.spotify:hover {
+  background-color: #20e562;
 }
 
 @media (min-width: 900px) {
@@ -47,6 +57,13 @@
 @media (max-width: 900px) {
   .podcast-page h1 {
     width: 100%;
+    box-sizing: border-box;
+  }
+
+  .podcast-content .podcast-links a {
+    width: 100%;
+    font-size: 1.25em;
+    margin: 2.5px 0;
     box-sizing: border-box;
   }
 }

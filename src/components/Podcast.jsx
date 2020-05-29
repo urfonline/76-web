@@ -15,6 +15,18 @@ class PodcastEpisode {
     }
 }
 
+class SpotifyLink {
+    view(vnode) {
+        return <a href={vnode.attrs.url} class="spotify"><i class="fa fa-spotify"/> Listen on Spotify</a>;
+    }
+}
+
+class RSSLink {
+    view(vnode) {
+        return <a href={'feed:' + vnode.attrs.url} type="application/rss+xml"><i class="fa fa-rss"/> Subscribe via RSS</a>;
+    }
+}
+
 class Podcast {
     constructor() {
         this.accordion = 0;
@@ -27,7 +39,8 @@ class Podcast {
                 <img class="float-right lazyload" data-src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
                 <p>{vnode.attrs.description}</p>
                 <div class="podcast-links">
-                    {vnode.attrs.spotifyUrl ? <a href={vnode.attrs.spotifyUrl}>Listen on Spotify</a> : ""}
+                    {vnode.attrs.spotifyUrl && <SpotifyLink url={vnode.attrs.spotifyUrl}/>}
+                    {vnode.attrs.rssUrl && <RSSLink url={vnode.attrs.rssUrl}/>}
                 </div>
                 <h3>Episodes</h3>
                 <div class="podcast-episodes">
