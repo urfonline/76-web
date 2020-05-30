@@ -9,7 +9,7 @@ class PodcastEpisode {
             <span class="duration">{vnode.attrs.duration}</span>
             {vnode.attrs.open && <div class="extra">
                 <p>{vnode.attrs.description}</p>
-                <button onclick={vnode.attrs.handlePlay}>Play Episode</button>
+                <button onclick={vnode.attrs.handlePlay}>Play {vnode.attrs.isPreview ? "Preview" : "Episode"}</button>
             </div>}
         </div>
     }
