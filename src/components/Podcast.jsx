@@ -9,9 +9,21 @@ class PodcastEpisode {
             <span class="duration">{vnode.attrs.duration}</span>
             {vnode.attrs.open && <div class="extra">
                 <p>{vnode.attrs.description}</p>
-                <button onclick={vnode.attrs.handlePlay}>Play Episode</button>
+                <button onclick={vnode.attrs.handlePlay}>Play {vnode.attrs.isPreview ? "Preview" : "Episode"}</button>
             </div>}
         </div>
+    }
+}
+
+class SpotifyLink {
+    view(vnode) {
+        return <a href={vnode.attrs.url} class="spotify"><i class="fa fa-spotify"/> Listen on Spotify</a>;
+    }
+}
+
+class RSSLink {
+    view(vnode) {
+        return <a href={'feed:' + vnode.attrs.url} type="application/rss+xml"><i class="fa fa-rss"/> Subscribe via RSS</a>;
     }
 }
 
@@ -26,6 +38,10 @@ class Podcast {
             <div class="podcast-content">
                 <img class="float-right lazyload" data-src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
                 <p>{vnode.attrs.description}</p>
+                <div class="podcast-links">
+                    {vnode.attrs.spotifyUrl && <SpotifyLink url={vnode.attrs.spotifyUrl}/>}
+                    {vnode.attrs.rssUrl && <RSSLink url={vnode.attrs.rssUrl}/>}
+                </div>
                 <h3>Episodes</h3>
                 <div class="podcast-episodes">
                     {vnode.attrs.episodes.map(

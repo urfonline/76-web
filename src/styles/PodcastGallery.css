@@ -30,7 +30,7 @@
 .podcast.placeholder {
     width: 100%;
     padding-top: 100%;
-    background: #ddd;
+    background: transparent;
 }
 
 .podcast:hover {
