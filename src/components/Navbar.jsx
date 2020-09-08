@@ -2,7 +2,7 @@ import m from 'mithril';
 import { Link } from 'mithril/route';
 
 import SeventySixLogo from './SeventySixLogo';
-import PlayerControls from "./PlayerControls";
+import PlayerControls from "./Player";
 
 export default class Navbar {
     view(vnode) {

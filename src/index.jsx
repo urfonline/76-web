@@ -8,7 +8,6 @@ import Splash from "./components/Splash";
 import BackgroundPlate from "./components/BackgroundPlate";
 import PodcastGallery from "./components/PodcastGallery";
 import Podcast from "./components/Podcast";
-import Player from "./components/Player";
 import SocialIcons from "./components/SocialIcons";
 
 import {useQuery} from "./util/QueryClient";
@@ -76,7 +75,6 @@ function RootResolver(WrappedComponent) {
             return <div class="container">
                 <BackgroundPlate/>
                 <Navbar/>
-                <Player/>
                 {vnode}
             </div>
         }
