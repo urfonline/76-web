@@ -6,7 +6,10 @@ function PlayerAudio(vnode) {
     function handleAudioStateChange(e) {
         console.log(e);
         // vnode.attrs.dispatch({ type: "AUDIO_STATE_CHANGE", audioState: e.type });
-        vnode.attrs.onTimeUpdate({ duration: e.target.duration });
+
+        if (e.type === "loadedmetadata") {
+            vnode.attrs.onTimeUpdate({ elapsed: 0, duration: e.target.duration });
+        }
     }
 
     function handleTimeUpdate(e) {
@@ -22,7 +25,6 @@ function PlayerAudio(vnode) {
             }
 
             let seekState = vnode.attrs.seekState();
-            console.log(seekState);
 
             if (seekState.shouldSeek) {
                 vnode.dom.currentTime = seekState.target;
@@ -36,7 +38,7 @@ function PlayerAudio(vnode) {
 
             return <audio src={selectedEpisode.mediaUrl} onloadstart={handleAudioStateChange}
                           onplay={handleAudioStateChange} onpause={handleAudioStateChange}
-                          ontimeupdate={handleTimeUpdate}/>
+                          ontimeupdate={handleTimeUpdate} onloadedmetadata={handleAudioStateChange}/>
         }
     }
 }
@@ -45,10 +47,23 @@ function PlayerControls(vnode) {
     let elapsed = 0;
     let duration = 1;
     let seekState = Stream({ shouldSeek: false, target: 0 });
+    let hoverPos = 0;
 
     function handleTimeUpdate(actual) {
         elapsed = actual.elapsed || elapsed;
         duration = actual.duration || duration;
+    }
+
+    function handleMouseMove(e) {
+        hoverPos = e.offsetX;
+    }
+
+    function handleMouseLeave() {
+        hoverPos = 0;
+    }
+
+    function handleSeek(e) {
+        seekState({ shouldSeek: true, target: (e.offsetX / e.currentTarget.clientWidth) * duration });
     }
 
     return {
@@ -65,14 +80,17 @@ function PlayerControls(vnode) {
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
                 <span class="episode-title">{selectedEpisode.title}</span>
-                <input type="range" min="0" max="100" step="0.01" value={progress || 0} role="slider"
-                       autocomplete="off" aria-label="seek" aria-valuemin="0" aria-valuemax="100"
-                       aria-valuenow={progress || 0} onchange={
-                    e => seekState({ shouldSeek: true, target: (e.target.value / 100) * duration })
-                }>
-                </input>
                 <PlayerAudio onTimeUpdate={handleTimeUpdate} seekState={seekState} selectedEpisode={selectedEpisode}
                              shouldPlay={shouldPlay}/>
+                <div class="progress-container">
+                    <div class="progress-bg" onmousemove={handleMouseMove} onmouseleave={handleMouseLeave}
+                         onclick={handleSeek}>
+                        <div class="progress-hover" style={`width: ${hoverPos}px`}>
+
+                        </div>
+                        <div class="progress-primary" style={`width: ${progress}%`}/>
+                    </div>
+                </div>
             </div>
         }
     }

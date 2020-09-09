@@ -2,9 +2,38 @@
 
 }
 
-.player-info input[type=range] {
-  border: 0;
-  color: var(--brand-pink);
-  -moz-appearance: none;
-  -webkit-appearance: none;
+.player-info .progress-container {
+  position: absolute;
+  display: block;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.player-info .progress-container * {
+  position: absolute;
+  display: block;
+  height: 2px;
+  width: 100%;
+  transition: height .25s;
+}
+
+.player-info .progress-bg {
+  background: #bbb;
+}
+
+.player-info .progress-primary {
+  background: var(--brand-pink);
+}
+
+.player-info .progress-hover {
+  background: var(--brand-pink-hover);
+}
+
+.navbar:hover .progress-container * {
+  height: 12px;
+}
+
+.player-info .episode-title {
+  margin-left: 5px;
 }
