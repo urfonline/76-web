@@ -24,12 +24,10 @@ function PlayerAudio(vnode) {
                 vnode.dom.pause();
             }
 
-            let seekState = vnode.attrs.seekState();
-
-            if (seekState.shouldSeek) {
-                vnode.dom.currentTime = seekState.target;
+            if (vnode.attrs.shouldSeek) {
+                vnode.dom.currentTime = vnode.attrs.target;
                 vnode.attrs.onTimeUpdate({ elapsed: vnode.dom.currentTime });
-                vnode.attrs.seekState({ ...seekState, shouldSeek: false });
+                vnode.attrs.seekDone();
             }
         },
 
@@ -46,7 +44,6 @@ function PlayerAudio(vnode) {
 function PlayerControls(vnode) {
     let elapsed = 0;
     let duration = 1;
-    let seekState = Stream({ shouldSeek: false, target: 0 });
     let hoverPos = 0;
 
     function handleTimeUpdate(actual) {
@@ -63,12 +60,12 @@ function PlayerControls(vnode) {
     }
 
     function handleSeek(e) {
-        seekState({ shouldSeek: true, target: (e.offsetX / e.currentTarget.clientWidth) * duration });
+        return { type: "SEEK", to: (e.offsetX / e.currentTarget.clientWidth) * duration };
     }
 
     return {
         view(vnode) {
-            let {selectedEpisode, shouldPlay, dispatch} = vnode.attrs;
+            let {selectedEpisode, shouldPlay, shouldSeek, target, dispatch} = vnode.attrs;
             let progress = (elapsed / duration) * 100;
 
             if (!selectedEpisode) {
@@ -80,11 +77,11 @@ function PlayerControls(vnode) {
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
                 <span class="episode-title">{selectedEpisode.title}</span>
-                <PlayerAudio onTimeUpdate={handleTimeUpdate} seekState={seekState} selectedEpisode={selectedEpisode}
-                             shouldPlay={shouldPlay}/>
+                <PlayerAudio onTimeUpdate={handleTimeUpdate} selectedEpisode={selectedEpisode} shouldPlay={shouldPlay}
+                             shouldSeek={shouldSeek} target={target} seekDone={() => dispatch({ type: "SEEK_DONE" })}/>
                 <div class="progress-container">
                     <div class="progress-bg" onmousemove={handleMouseMove} onmouseleave={handleMouseLeave}
-                         onclick={handleSeek}>
+                         onclick={(e) => dispatch(handleSeek(e))}>
                         <div class="progress-hover" style={`width: ${hoverPos}px`}>
 
                         </div>
