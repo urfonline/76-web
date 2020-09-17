@@ -1,6 +1,6 @@
 import m from "mithril";
 import {connect} from "../util/ReduxAdapter";
-import Stream from "mithril/stream";
+import {usePersistence} from "../util/StorageAdapter";
 
 function PlayerAudio(vnode) {
     function handleAudioStateChange(e) {
@@ -46,6 +46,9 @@ function PlayerControls(vnode) {
     let duration = 1;
     let hoverPos = 0;
 
+    let { state, set, unsubscribe } = usePersistence("podplayer");
+    let episodeTime = (episode) => state.map(state => state[episode.mediaUrl] || 0);
+
     function handleTimeUpdate(actual) {
         elapsed = actual.elapsed || elapsed;
         duration = actual.duration || duration;
@@ -64,6 +67,26 @@ function PlayerControls(vnode) {
     }
 
     return {
+        onupdate(vnode) {
+            let selectedEpisode = vnode.attrs.selectedEpisode;
+
+            if (vnode.attrs.shouldPlay) {
+                // Save slightly behind playback head, helps moderate restoring too far forward
+                let elapsedOffset = Math.floor(elapsed) - 3;
+                if (elapsedOffset > 0) {
+                    set(selectedEpisode.mediaUrl, elapsedOffset);
+                }
+            }
+
+            if (vnode.attrs.shouldRestore) {
+                vnode.attrs.dispatch({ type: "RESTORE_POSITION", to: episodeTime(selectedEpisode)() });
+            }
+        },
+
+        onremove(vnode) {
+            unsubscribe();
+        },
+
         view(vnode) {
             let {selectedEpisode, shouldPlay, shouldSeek, target, dispatch} = vnode.attrs;
             let progress = (elapsed / duration) * 100;

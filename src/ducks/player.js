@@ -2,6 +2,7 @@ const initialState = {
     selectedEpisode: null,
     shouldPlay: false,
     shouldSeek: false,
+    shouldRestore: true,
     audioState: "pending",
     target: 0,
 };
@@ -13,6 +14,7 @@ export default function playerReducer(state = initialState, action) {
                 ...state,
                 selectedEpisode: action.episode,
                 shouldPlay: false,
+                shouldRestore: true,
             };
         case "PLAY":
             return {
@@ -39,6 +41,13 @@ export default function playerReducer(state = initialState, action) {
             return {
                 ...state,
                 shouldSeek: false,
+            };
+        case "RESTORE_POSITION":
+            return {
+                ...state,
+                shouldSeek: true,
+                shouldRestore: false,
+                target: action.to,
             };
         case "AUDIO_STATE_CHANGE":
             return {
