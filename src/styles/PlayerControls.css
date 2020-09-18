@@ -2,7 +2,7 @@
 
 }
 
-.player-info .progress-container {
+.progress-container {
   position: absolute;
   display: block;
   left: 0;
@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-.player-info .progress-container * {
+.progress-container * {
   position: absolute;
   display: block;
   height: 2px;
@@ -18,15 +18,15 @@
   transition: height .25s;
 }
 
-.player-info .progress-bg {
+.progress-container .progress-bg {
   background: #bbb;
 }
 
-.player-info .progress-primary {
+.progress-container .progress-primary {
   background: var(--brand-pink);
 }
 
-.player-info .progress-hover {
+.progress-container .progress-hover {
   background: var(--brand-pink-hover);
 }
 

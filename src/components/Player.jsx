@@ -5,10 +5,12 @@ import {usePersistence} from "../util/StorageAdapter";
 function PlayerAudio(vnode) {
     function handleAudioStateChange(e) {
         console.log(e);
-        // vnode.attrs.dispatch({ type: "AUDIO_STATE_CHANGE", audioState: e.type });
 
         if (e.type === "loadedmetadata") {
             vnode.attrs.onTimeUpdate({ elapsed: 0, duration: e.target.duration });
+            vnode.attrs.onReady();
+        } else if (e.type === "ended") {
+            vnode.attrs.onComplete();
         }
     }
 
@@ -36,7 +38,8 @@ function PlayerAudio(vnode) {
 
             return <audio src={selectedEpisode.mediaUrl} onloadstart={handleAudioStateChange}
                           onplay={handleAudioStateChange} onpause={handleAudioStateChange}
-                          ontimeupdate={handleTimeUpdate} onloadedmetadata={handleAudioStateChange}/>
+                          ontimeupdate={handleTimeUpdate} onloadedmetadata={handleAudioStateChange}
+                          onended={handleAudioStateChange}/>
         }
     }
 }
@@ -46,7 +49,7 @@ function PlayerControls(vnode) {
     let duration = 1;
     let hoverPos = 0;
 
-    let { state, set, unsubscribe } = usePersistence("podplayer");
+    let { state, set: persistElapsed, unsubscribe } = usePersistence("podplayer");
     let episodeTime = (episode) => state.map(state => state[episode.mediaUrl] || 0);
 
     function handleTimeUpdate(actual) {
@@ -66,6 +69,11 @@ function PlayerControls(vnode) {
         return { type: "SEEK", to: (e.offsetX / e.currentTarget.clientWidth) * duration };
     }
 
+    function handleFinished(e, selectedEpisode) {
+        persistElapsed(selectedEpisode.mediaUrl, null);
+        return { type: "DONE" };
+    }
+
     return {
         onupdate(vnode) {
             let selectedEpisode = vnode.attrs.selectedEpisode;
@@ -74,7 +82,7 @@ function PlayerControls(vnode) {
                 // Save slightly behind playback head, helps moderate restoring too far forward
                 let elapsedOffset = Math.floor(elapsed) - 3;
                 if (elapsedOffset > 0) {
-                    set(selectedEpisode.mediaUrl, elapsedOffset);
+                    persistElapsed(selectedEpisode.mediaUrl, elapsedOffset);
                 }
             }
 
@@ -95,23 +103,23 @@ function PlayerControls(vnode) {
                 return <div class="player-info"/>
             }
 
-            return <div class="player-info">
+            return [<div class="player-info">
                 <a onclick={() => dispatch({type: "TOGGLE"})}>
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
                 <span class="episode-title">{selectedEpisode.title}</span>
                 <PlayerAudio onTimeUpdate={handleTimeUpdate} selectedEpisode={selectedEpisode} shouldPlay={shouldPlay}
-                             shouldSeek={shouldSeek} target={target} seekDone={() => dispatch({ type: "SEEK_DONE" })}/>
-                <div class="progress-container">
-                    <div class="progress-bg" onmousemove={handleMouseMove} onmouseleave={handleMouseLeave}
-                         onclick={(e) => dispatch(handleSeek(e))}>
-                        <div class="progress-hover" style={`width: ${hoverPos}px`}>
-
-                        </div>
-                        <div class="progress-primary" style={`width: ${progress}%`}/>
-                    </div>
+                             shouldSeek={shouldSeek} target={target} seekDone={() => dispatch({ type: "SEEK_DONE" })}
+                             onReady={() => dispatch({ type: "RESTORE" })}
+                             onComplete={(e) => dispatch(handleFinished(e, selectedEpisode))}/>
+            </div>,
+            <div className="progress-container">
+                <div className="progress-bg" onmousemove={handleMouseMove} onmouseleave={handleMouseLeave}
+                     onclick={(e) => dispatch(handleSeek(e))}>
+                    <div className="progress-hover" style={`width: ${hoverPos}px`}/>
+                    <div className="progress-primary" style={`width: ${progress}%`}/>
                 </div>
-            </div>
+            </div>]
         }
     }
 }

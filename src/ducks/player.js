@@ -14,6 +14,10 @@ export default function playerReducer(state = initialState, action) {
                 ...state,
                 selectedEpisode: action.episode,
                 shouldPlay: false,
+            };
+        case "READY":
+            return {
+                ...state,
                 shouldRestore: true,
             };
         case "PLAY":
@@ -49,10 +53,12 @@ export default function playerReducer(state = initialState, action) {
                 shouldRestore: false,
                 target: action.to,
             };
-        case "AUDIO_STATE_CHANGE":
+        case "DONE":
             return {
                 ...state,
-                audioState: action.audioState,
+                shouldPlay: false,
+                shouldSeek: true,
+                target: 0,
             };
         default:
             return state;

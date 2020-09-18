@@ -26,6 +26,12 @@ export function useStorage(key, defaultValue = null) {
 export function persist(channel, key, value) {
     let stored = JSON.parse(window.localStorage.getItem(channel) || "{}");
 
+    if (value == null) {
+        delete stored[key];
+        window.localStorage.setItem(channel, JSON.stringify(stored));
+        return;
+    }
+
     window.localStorage.setItem(channel, JSON.stringify({
         ...stored,
         [key]: value,
