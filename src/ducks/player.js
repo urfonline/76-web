@@ -2,8 +2,7 @@ const initialState = {
     selectedEpisode: null,
     shouldPlay: false,
     shouldSeek: false,
-    shouldRestore: true,
-    audioState: "pending",
+    shouldRestore: false,
     target: 0,
 };
 

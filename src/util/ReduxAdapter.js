@@ -1,6 +1,6 @@
 import m from "mithril";
 import Stream from "mithril/stream";
-import {applyMiddleware, combineReducers, createStore as createReduxStore} from "redux";
+import {applyMiddleware, bindActionCreators, combineReducers, createStore as createReduxStore} from "redux";
 
 export const globalStore = Stream(null);
 
@@ -17,10 +17,11 @@ export const defaultMapStateToProps = (state, props) => state;
 
 export function connect(mapStateToProps, mapActionCreators = {}) {
     return WrappedComponent => vnode => {
-        let store = globalStore();
-        let state = Stream({});
-
         let ownProps = vnode.attrs || {};
+
+        let store = globalStore();
+        let state = Stream(mapStateToProps(store.getState(), ownProps));
+
         let unsubscribe = store.subscribe(() => {
             state(mapStateToProps(store.getState(), ownProps));
             m.redraw();
@@ -35,6 +36,7 @@ export function connect(mapStateToProps, mapActionCreators = {}) {
                 return m(WrappedComponent, {
                     ...state(),
                     ...vnode.attrs,
+                    ...bindActionCreators(mapActionCreators, store.dispatch),
                     dispatch: store.dispatch,
                 }, vnode.children);
             }

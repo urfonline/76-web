@@ -2,7 +2,9 @@ import m from "mithril";
 import {connect} from "../util/ReduxAdapter";
 import {usePersistence} from "../util/StorageAdapter";
 
-function PlayerAudio(vnode) {
+function PlayerAudioImpl(vnode) {
+    window.m = m;
+
     function handleAudioStateChange(e) {
         console.log(e);
 
@@ -43,6 +45,15 @@ function PlayerAudio(vnode) {
         }
     }
 }
+
+let PlayerAudio = connect((state) => state.player, {
+    onReady() {
+        return { type: "READY" };
+    },
+    seekDone() {
+        return { type: "SEEK_DONE" };
+    },
+})(PlayerAudioImpl);
 
 function PlayerControls(vnode) {
     let elapsed = 0;
@@ -96,7 +107,7 @@ function PlayerControls(vnode) {
         },
 
         view(vnode) {
-            let {selectedEpisode, shouldPlay, shouldSeek, target, dispatch} = vnode.attrs;
+            let {selectedEpisode, shouldPlay, playPause, dispatch} = vnode.attrs;
             let progress = (elapsed / duration) * 100;
 
             if (!selectedEpisode) {
@@ -104,13 +115,11 @@ function PlayerControls(vnode) {
             }
 
             return [<div class="player-info">
-                <a onclick={() => dispatch({type: "TOGGLE"})}>
+                <a onclick={playPause}>
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
                 <span class="episode-title">{selectedEpisode.title}</span>
-                <PlayerAudio onTimeUpdate={handleTimeUpdate} selectedEpisode={selectedEpisode} shouldPlay={shouldPlay}
-                             shouldSeek={shouldSeek} target={target} seekDone={() => dispatch({ type: "SEEK_DONE" })}
-                             onReady={() => dispatch({ type: "RESTORE" })}
+                <PlayerAudio onTimeUpdate={handleTimeUpdate}
                              onComplete={(e) => dispatch(handleFinished(e, selectedEpisode))}/>
             </div>,
             <div className="progress-container">
@@ -124,4 +133,8 @@ function PlayerControls(vnode) {
     }
 }
 
-export default connect((state) => state.player)(PlayerControls);
+export default connect((state) => state.player, {
+    playPause() {
+        return { type: "TOGGLE" };
+    },
+})(PlayerControls);
