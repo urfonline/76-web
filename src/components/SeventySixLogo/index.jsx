@@ -9,7 +9,7 @@ export default class SeventySixLogo {
 
     oncreate(vnode) {
         this.vivus = new Vivus(vnode.dom, {
-            duration: 120,
+            duration: vnode.attrs.duration || 120,
             type: 'oneByOne',
             start: 'manual',
             animTimingFunction: Vivus.EASE,

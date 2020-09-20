@@ -20,6 +20,12 @@
     padding: 10px;
 }
 
+@media (max-width: 900px) {
+    .block {
+        margin-bottom: 50px;
+    }
+}
+
 .contact-page {
     font-size: 26px;
     background: #fff;
@@ -62,6 +68,11 @@ a.stylish.urf-red:hover {
 
 .center {
     text-align: center;
+}
+
+.endstop {
+    background: #fff;
+    padding-bottom: 10px;
 }
 
 .error {
