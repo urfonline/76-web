@@ -5,7 +5,8 @@ const svgrTemplate = require("./utils/mithril-svg-template.js");
 module.exports = {
     entry: ['lazysizes', './src/index.jsx'],
     output: {
-        filename: 'main.js',
+        filename: '[name].entry.js',
+        chunkFilename: '[name].[hash].chunk.js',
         path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
@@ -55,5 +56,10 @@ module.exports = {
             test: /\.(ttf|woff2?|eot|svg)$/,
             loader: 'file-loader',
         }]
+    },
+    optimization: {
+        splitChunks: {
+            chunks: "all",
+        }
     }
 };
