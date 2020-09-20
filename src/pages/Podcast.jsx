@@ -14,7 +14,10 @@ export default function PodcastPage(vnode) {
         view(vnode) {
             return <div class="block">
                 {podcast() ? m(Podcast, podcast()) : <h1>Loading...</h1>}
-                {error() && <div class="error">There was an error fetching that podcast :(</div>}
+                {error() && <div class="error">
+                    There was an error fetching that podcast :(
+                    <div><code>{error().message}</code></div>
+                </div>}
             </div>
         }
     }

@@ -33,7 +33,10 @@ export default function PodcastGallery(vnode) {
                     allPodcasts().map(podcast => m(PodcastSquare, { ...podcast, key: podcast.slug }))
                     : <SquarePlaceholder/>}
                 {error() &&
-                    <div class="error">There was an error fetching podcasts :(</div>
+                    <div class="error">
+                        There was an error fetching podcasts :(
+                        <div><code>{error().message}</code></div>
+                    </div>
                 }
             </div>
         }

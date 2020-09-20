@@ -17,9 +17,8 @@ export function useQuery(query, variables = {}) {
                 variables: variables,
             },
             responseType: "json",
-            deserialize: res => res.data
         })
-            .then((data) => result(data))
+            .then((res) => res.errors ? error(res.errors[0]) : result(res.data))
             .catch((err) => error(err));
     }
 
