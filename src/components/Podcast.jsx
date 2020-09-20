@@ -6,7 +6,9 @@ class PodcastEpisode {
         return <div class={"podcast-episode " + (vnode.attrs.open ? "open" : "closed")}
                     onclick={vnode.attrs.handleClick}>
             <span><b>{vnode.attrs.title}</b></span>
-            <span class="duration">{vnode.attrs.duration}</span>
+            <span class="duration">
+                <span style="direction: ltr;">{vnode.attrs.duration}</span>
+            </span>
             {vnode.attrs.open && <div class="extra">
                 <p>{vnode.attrs.description}</p>
                 <button onclick={vnode.attrs.handlePlay}>Play {vnode.attrs.isPreview ? "Preview" : "Episode"}</button>

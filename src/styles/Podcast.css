@@ -101,6 +101,8 @@
   text-align: right;
   color: #777;
   width: 10%;
+  float: right;
+  direction: rtl;
 }
 
 .podcast-episode .extra {
