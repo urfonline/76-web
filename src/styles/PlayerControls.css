@@ -2,6 +2,10 @@
 
 }
 
+.player-info > * {
+  margin: 0 5px;
+}
+
 .progress-container {
   position: absolute;
   display: block;

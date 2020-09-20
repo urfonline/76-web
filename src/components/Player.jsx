@@ -80,6 +80,10 @@ function PlayerControls(vnode) {
         return { type: "SEEK", to: (e.offsetX / e.currentTarget.clientWidth) * duration };
     }
 
+    function handleStepSeek(e, direction) {
+        return { type: "SEEK", to: elapsed + (10 * direction) };
+    }
+
     function handleFinished(e, selectedEpisode) {
         persistElapsed(selectedEpisode.mediaUrl, null);
         return { type: "DONE" };
@@ -115,9 +119,11 @@ function PlayerControls(vnode) {
             }
 
             return [<div class="player-info">
+                <a onclick={(e) => dispatch(handleStepSeek(e, -1))}><i class="fa fa-step-backward"/></a>
                 <a onclick={playPause}>
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
+                <a onclick={(e) => dispatch(handleStepSeek(e, 1))}><i className="fa fa-step-forward"/></a>
                 <span class="episode-title">{selectedEpisode.title}</span>
                 <PlayerAudio onTimeUpdate={handleTimeUpdate}
                              onComplete={(e) => dispatch(handleFinished(e, selectedEpisode))}/>

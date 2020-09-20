@@ -3,6 +3,7 @@ const initialState = {
     shouldPlay: false,
     shouldSeek: false,
     shouldRestore: false,
+    shouldPlayAfterSeek: false,
     target: 0,
 };
 
@@ -13,6 +14,7 @@ export default function playerReducer(state = initialState, action) {
                 ...state,
                 selectedEpisode: action.episode,
                 shouldPlay: false,
+                shouldPlayAfterSeek: true,
             };
         case "READY":
             return {
@@ -44,6 +46,8 @@ export default function playerReducer(state = initialState, action) {
             return {
                 ...state,
                 shouldSeek: false,
+                shouldPlay: state.shouldPlayAfterSeek ? true : state.shouldPlay,
+                shouldPlayAfterSeek: false,
             };
         case "RESTORE_POSITION":
             return {
