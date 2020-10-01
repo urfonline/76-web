@@ -1,0 +1,5 @@
+query PageQuery($slug: String!) {
+    podcastPage(slug: $slug) {
+        id, title, body
+    }
+}

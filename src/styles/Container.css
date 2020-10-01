@@ -26,18 +26,18 @@
     }
 }
 
-.contact-page {
+.custom-page {
     font-size: 26px;
     background: #fff;
     padding: 10px;
     border-top: 4px solid var(--brand-blue);
 }
 
-.contact-page p {
+.custom-content p {
     margin: 15px 0;
 }
 
-a.stylish {
+.custom-content a {
     color: var(--brand-blue);
     text-decoration: none;
     border-bottom: 3px solid var(--brand-blue);
@@ -45,17 +45,17 @@ a.stylish {
     transition: background-color .25s, color .25s;
 }
 
-a.stylish:hover {
+.custom-content a:hover {
     background-color: var(--brand-blue);
     color: #fff;
 }
 
-a.stylish.urf-red {
+.custom-content a.urf-red {
     color: var(--brand-urf-red);
     border-bottom: 3px solid var(--brand-urf-red);
 }
 
-a.stylish.urf-red:hover {
+.custom-content a.urf-red:hover {
     background-color: var(--brand-urf-red);
     color: #fff;
 }
