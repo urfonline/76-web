@@ -6,12 +6,12 @@ module.exports = {
     entry: ['lazysizes', './src/index.jsx'],
     output: {
         filename: '[name].entry.js',
-        chunkFilename: '[name].[hash].chunk.js',
+        chunkFilename: '76.[name].[hash].chunk.js',
         path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Seventy Six Podcasting",
+            title: "Seven Six Podcasting",
             meta: {
                 viewport: "width=device-width; initial-scale=1"
             }
