@@ -8,6 +8,7 @@ module.exports = {
         filename: '[name].entry.js',
         chunkFilename: '76.[name].[hash].chunk.js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -19,6 +20,7 @@ module.exports = {
     ],
     devServer: {
         contentBase: './dist',
+        historyApiFallback: true,
     },
     resolve: {
         modules: ['node_modules'],

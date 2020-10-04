@@ -26,8 +26,9 @@ function RootResolver(chunk) {
     };
 }
 
-m.route(document.body, "/home", {
-    "/home": RootResolver(() => import(/* webpackChunkName: "Home", webpackPreload: true */ "./pages/Home")),
+m.route.prefix = "";
+m.route(document.body, "/", {
+    "/": RootResolver(() => import(/* webpackChunkName: "Home", webpackPreload: true */ "./pages/Home")),
     "/contact": RootResolver(() => import(/* webpackChunkName: "Contact" */ "./pages/Contact")),
     "/podcast/:slug": RootResolver(() => import(/* webpackChunkName: "Podcast" */ "./pages/Podcast")),
 });
