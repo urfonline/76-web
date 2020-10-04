@@ -3,10 +3,6 @@
   "schemaPath": "./schema.graphql",
   "extensions": {
     "endpoints": {
-      "URF Local": {
-        "url": "http://esther.local:8000/graphql",
-        "introspect": true
-      },
       "URF Production": {
         "url": "https://api.urfonline.com/graphql",
         "introspect": true
