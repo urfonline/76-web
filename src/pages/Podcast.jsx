@@ -11,6 +11,14 @@ export default function PodcastPage(vnode) {
 
     return {
         oninit: run,
+
+        onupdate(vnode) {
+            let info = podcast();
+            if (info) {
+                document.title = `${info.title} | Seven Six`;
+            }
+        },
+
         view(vnode) {
             return <div class="block">
                 {podcast() ? m(Podcast, podcast()) : <h1>Loading...</h1>}

@@ -10,6 +10,13 @@ export default function ContactPage(vnode) {
 
     return {
         oninit: run,
+
+        onupdate() {
+            if (pageInfo()) {
+                document.title = `${pageInfo().title} | Seven Six`;
+            }
+        },
+
         view() {
             if (!pageInfo()) {
                 return <div class="block">

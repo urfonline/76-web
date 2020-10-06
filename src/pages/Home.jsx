@@ -4,6 +4,10 @@ import PodcastGallery from "../components/PodcastGallery";
 import SocialIcons from "../components/SocialIcons";
 
 export default class Homepage {
+    oncreate() {
+        document.title = "Seven Six Podcasting";
+    }
+
     view() {
         return <div class="block">
             <Splash/>
