@@ -118,13 +118,13 @@ function PlayerControls(vnode) {
                 return <div class="player-info"/>
             }
 
-            return [<div class="player-info">
+            return [<div class="player-info active">
+                <span class="episode-title">{selectedEpisode.title}</span>
                 <a onclick={(e) => dispatch(handleStepSeek(e, -1))}><i class="fa fa-step-backward"/></a>
                 <a onclick={playPause}>
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
                 <a onclick={(e) => dispatch(handleStepSeek(e, 1))}><i className="fa fa-step-forward"/></a>
-                <span class="episode-title">{selectedEpisode.title}</span>
                 <PlayerAudio onTimeUpdate={handleTimeUpdate}
                              onComplete={(e) => dispatch(handleFinished(e, selectedEpisode))}/>
             </div>,

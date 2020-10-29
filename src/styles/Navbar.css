@@ -25,13 +25,21 @@
     color: var(--brand-blue);
 }
 
-.navbar .player-info {
-    display: inline-block;
-    text-align: center;
+.navbar .player-info.active {
+    margin: 10px;
+}
+
+@media (min-width: 900px) {
+    .navbar .player-info {
+        display: inline-block;
+        text-align: right;
+        float: right;
+    }
 }
 
 @media (max-width: 900px) {
     .navbar .player-info {
         display: block;
+        text-align: center;
     }
 }
