@@ -1,5 +1,4 @@
 .container {
-    position: relative;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -73,6 +72,11 @@
 .endstop {
     background: #fff;
     padding-bottom: 10px;
+}
+
+.filler {
+    display: block;
+    height: 100px;
 }
 
 .error {

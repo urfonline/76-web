@@ -71,8 +71,10 @@ class DynamicBackground {
 
     redraw() {
         this.lines = [];
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+
+        let element = document.querySelector(".container");
+        this.width = document.documentElement.clientWidth;
+        this.height = Math.max(window.innerHeight, element.scrollHeight);
 
         for (let y = 0; y <= this.height; y += 15) {
             let line = new NoiseLine(this.simplex, 0, y, this.width + 10);
@@ -81,21 +83,23 @@ class DynamicBackground {
         }
     }
 
+    onresize() {
+        this.redraw();
+        m.redraw();
+    }
+
     oninit() {
         this.redraw();
 
-        this.onresize = function(ev) {
-            this.redraw();
-            m.redraw();
-        }.bind(this);
-
-        window.addEventListener("resize", this.onresize);
+        this.observer = new ResizeObserver(() => this.onresize());
+        this.observer.observe(document.querySelector(".container"));
+        this.observer.observe(document.documentElement);
     }
 
     onremove() {
         this.lines = [];
 
-        window.removeEventListener("resize", this.onresize);
+        this.observer.disconnect();
     }
 }
 
