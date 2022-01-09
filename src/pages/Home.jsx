@@ -15,7 +15,7 @@ export default class Homepage {
             <PodcastGallery/>
             <div class="footer">
                 <SocialIcons/>
-                <div class="center">Built with &#10084; by the URF tech team, 2020</div>
+                <div class="center">Built with &#10084; by the URF tech team, 2022</div>
             </div>
         </div>
     }

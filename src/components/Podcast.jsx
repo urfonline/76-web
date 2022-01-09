@@ -10,7 +10,7 @@ class PodcastEpisode {
                 <span style="direction: ltr;">{vnode.attrs.duration}</span>
             </span>
             {vnode.attrs.open && <div class="extra">
-                <p>{vnode.attrs.description}</p>
+                <p>{m.trust(vnode.attrs.description)}</p>
                 <button onclick={vnode.attrs.handlePlay}>Play {vnode.attrs.isPreview ? "Preview" : "Episode"}</button>
             </div>}
         </div>
@@ -39,7 +39,7 @@ class Podcast {
             <h1>{vnode.attrs.title}</h1>
             <div class="podcast-content">
                 <img class="float-right lazyload" data-src={vnode.attrs.coverUrl} alt={vnode.attrs.title} />
-                <p>{vnode.attrs.description}</p>
+                <p>{m.trust(vnode.attrs.description)}</p>
                 <div class="podcast-links">
                     {vnode.attrs.spotifyUrl && <SpotifyLink url={vnode.attrs.spotifyUrl}/>}
                     {vnode.attrs.rssUrl && <RSSLink url={vnode.attrs.rssUrl}/>}
