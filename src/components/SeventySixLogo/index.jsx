@@ -4,7 +4,7 @@ import Vivus from 'vivus';
 
 export default class SeventySixLogo {
     view({ attrs }) {
-        return <Logo style={{ width: attrs.size || '75px', height: 'auto' }} className={attrs.class}/>
+        return <Logo onclick={() => this.onclick(attrs.disabled)} style={{ width: attrs.size || '75px', height: 'auto' }} className={attrs.class}/>
     }
 
     oncreate(vnode) {
@@ -24,5 +24,13 @@ export default class SeventySixLogo {
     onbeforeremove() {
         this.vivus.destroy();
         window.navVivus = null;
+    }
+
+    onclick(disabled) {
+        if (disabled) return;
+
+        this.vivus.play(-2, () => {
+            this.vivus.play(1);
+        });
     }
 }

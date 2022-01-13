@@ -15,7 +15,7 @@ export default class Splash {
             <p>Podcasting powered by <a class="urf-red urf-link" href="https://urfonline.com">URF</a></p>
         </div>,
         <div class="splash mobile">
-            <SeventySixLogo size="100%" class="logo" duration={150}/>
+            <SeventySixLogo size="100%" class="logo" duration={150} disabled />
             <p>Podcasting powered by <a className="urf-red urf-link" href="https://urfonline.com">URF</a></p>
         </div>]
     }
