@@ -41,6 +41,14 @@
   background-color: #20e562;
 }
 
+.podcast-content .podcast-links a.apple {
+  background-color: #8f35ca;
+}
+
+.podcast-content .podcast-links a.apple:hover {
+  background-color: #d46dfb;
+}
+
 @media (min-width: 900px) {
   .podcast-content img.float-right {
     float: right;

@@ -29,6 +29,12 @@ class RSSLink {
     }
 }
 
+class AppleLink {
+    view(vnode) {
+        return <a href={vnode.attrs.url} class="apple"><i class="fa fa-podcast" /> Listen on Apple Podcasts</a>;
+    }
+}
+
 class Podcast {
     constructor() {
         this.accordion = 0;
@@ -42,6 +48,7 @@ class Podcast {
                 <p>{m.trust(vnode.attrs.description)}</p>
                 <div class="podcast-links">
                     {vnode.attrs.spotifyUrl && <SpotifyLink url={vnode.attrs.spotifyUrl}/>}
+                    {vnode.attrs.appleUrl && <AppleLink url={vnode.attrs.appleUrl} />}
                     {vnode.attrs.rssUrl && <RSSLink url={vnode.attrs.rssUrl}/>}
                 </div>
                 <h3>Episodes</h3>
