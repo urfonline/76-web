@@ -4,8 +4,12 @@
   border-top: 4px solid var(--brand-blue);
 }
 
-.podcast-content p {
+.podcast-content .podcast-description {
   display: inline;
+}
+
+.podcast-content .podcast-description p {
+  margin: 0 0 10px 0;
 }
 
 .podcast-content img {
