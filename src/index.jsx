@@ -20,7 +20,9 @@ function RootResolver(chunk) {
             return <div class="container">
                 <BackgroundPlate/>
                 <Navbar/>
-                {vnode}
+                <>
+                    {vnode}
+                </>
             </div>
         }
     };
@@ -29,6 +31,6 @@ function RootResolver(chunk) {
 m.route.prefix = "";
 m.route(document.body, "/", {
     "/": RootResolver(() => import(/* webpackChunkName: "Home", webpackPreload: true */ "./pages/Home")),
-    "/contact": RootResolver(() => import(/* webpackChunkName: "Contact" */ "./pages/Contact")),
     "/podcast/:slug": RootResolver(() => import(/* webpackChunkName: "Podcast" */ "./pages/Podcast")),
+    "/:key": RootResolver(() => import(/* webpackChunkName: "Custom" */ "./pages/Custom")),
 });

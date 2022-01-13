@@ -3,8 +3,8 @@ import SocialIcons from "../components/SocialIcons";
 import {useQuery} from "../util/QueryClient";
 import QPages from "../queries/pages.gql";
 
-export default function ContactPage(vnode) {
-    let [result, run, error] = useQuery(QPages, { slug: "contact" });
+export default function CustomPage(vnode) {
+    let [result, run, error] = useQuery(QPages, { slug: vnode.attrs.key });
 
     let pageInfo = result.map(data => data.podcastPage);
 

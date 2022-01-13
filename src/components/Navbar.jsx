@@ -7,9 +7,10 @@ import PlayerControls from "./Player";
 export default class Navbar {
     view(vnode) {
         return <div class="navbar">
-            <Link href={"/home"}>
+            <Link href={"/"}>
                 <SeventySixLogo size={'50px'} class={"logo"}/>
             </Link>
+            <Link href={"/about"}>About</Link>
             <Link href={"/contact"}>Contact</Link>
             <PlayerControls/>
         </div>
