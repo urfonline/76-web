@@ -39,7 +39,9 @@ class SpotifyLink {
 
 class RSSLink {
     view(vnode) {
-        return <a href={'feed:' + vnode.attrs.url} type="application/rss+xml"><i class="fa fa-rss"/> Subscribe via RSS</a>;
+        return <a href={'feed:' + vnode.attrs.url} rel="alternate" type="application/rss+xml">
+            <i class="fa fa-rss"/> Subscribe via RSS
+        </a>;
     }
 }
 
