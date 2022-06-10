@@ -1,7 +1,18 @@
 import m from "mithril";
 import {connect} from "../util/ReduxAdapter";
+import {usePersistence} from "../util/StorageAdapter";
 
 class PodcastEpisode {
+    constructor(vnode) {
+        let { state, unsubscribe } = usePersistence("podplayer");
+        this.hasSavedDuration = state.map(state => !!state[vnode.attrs.mediaUrl]);
+        this.unsubscribe = unsubscribe;
+    }
+
+    onremove() {
+        this.unsubscribe();
+    }
+
     view(vnode) {
         return <div class={"podcast-episode " + (vnode.attrs.open ? "open" : "closed")}
                     onclick={vnode.attrs.handleClick}>
@@ -11,7 +22,10 @@ class PodcastEpisode {
             </span>
             {vnode.attrs.open && <div class="extra">
                 <div class="podcast-description">{m.trust(vnode.attrs.description)}</div>
-                <button onclick={vnode.attrs.handlePlay}>Play {vnode.attrs.isPreview ? "Preview" : "Episode"}</button>
+                <button onclick={vnode.attrs.handlePlay}>
+                    {this.hasSavedDuration() ? "Resume": "Play"}{" "}
+                    {vnode.attrs.isPreview ? "Preview" : "Episode"}
+                </button>
             </div>}
         </div>
     }
