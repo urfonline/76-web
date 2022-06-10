@@ -4,6 +4,7 @@ const initialState = {
     shouldSeek: false,
     shouldRestore: false,
     shouldPlayAfterSeek: false,
+    isLoading: false,
     target: 0,
 };
 
@@ -15,11 +16,13 @@ export default function playerReducer(state = initialState, action) {
                 selectedEpisode: action.episode,
                 shouldPlay: false,
                 shouldPlayAfterSeek: true,
+                isLoading: true,
             };
         case "READY":
             return {
                 ...state,
                 shouldRestore: true,
+                isLoading: false,
             };
         case "PLAY":
             return {

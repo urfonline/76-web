@@ -6,9 +6,9 @@ function PlayerAudioImpl(vnode) {
     window.m = m;
 
     function handleAudioStateChange(e) {
-        console.log(e);
-
-        if (e.type === "loadedmetadata") {
+        if (e.type === "loadstart") {
+            vnode.attrs.onLoadStart();
+        } else if (e.type === "loadedmetadata") {
             vnode.attrs.onTimeUpdate({ elapsed: 0, duration: e.target.duration });
             vnode.attrs.onReady();
         } else if (e.type === "ended") {
@@ -63,6 +63,12 @@ function PlayerControls(vnode) {
     let { state, set: persistElapsed, unsubscribe } = usePersistence("podplayer");
     let episodeTime = (episode) => state.map(state => state[episode.mediaUrl] || 0);
 
+    function handleLoadStart() {
+        elapsed = 0;
+        duration = 1;
+        hoverPos = 0;
+    }
+
     function handleTimeUpdate(actual) {
         elapsed = actual.elapsed || elapsed;
         duration = actual.duration || duration;
@@ -111,7 +117,7 @@ function PlayerControls(vnode) {
         },
 
         view(vnode) {
-            let {selectedEpisode, shouldPlay, playPause, dispatch} = vnode.attrs;
+            let {selectedEpisode, shouldPlay, isLoading, playPause, dispatch} = vnode.attrs;
             let progress = (elapsed / duration) * 100;
 
             if (!selectedEpisode) {
@@ -125,12 +131,12 @@ function PlayerControls(vnode) {
                     {shouldPlay ? <i class="fa fa-pause"/> : <i class="fa fa-play"/>}
                 </a>
                 <a onclick={(e) => dispatch(handleStepSeek(e, 1))}><i className="fa fa-step-forward"/></a>
-                <PlayerAudio onTimeUpdate={handleTimeUpdate}
+                <PlayerAudio onTimeUpdate={handleTimeUpdate} onLoadStart={handleLoadStart}
                              onComplete={(e) => dispatch(handleFinished(e, selectedEpisode))}/>
             </div>,
             <div className="progress-container">
-                <div className="progress-bg" onmousemove={handleMouseMove} onmouseleave={handleMouseLeave}
-                     onclick={(e) => dispatch(handleSeek(e))}>
+                <div className={`progress-bg${isLoading ? " loading" : ""}`} onmousemove={handleMouseMove}
+                     onmouseleave={handleMouseLeave} onclick={(e) => dispatch(handleSeek(e))}>
                     <div className="progress-hover" style={`width: ${hoverPos}px`}/>
                     <div className="progress-primary" style={`width: ${progress}%`}/>
                 </div>
