@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px 10px;
+    min-height: 380px;
 }
 
 .podcast {
@@ -31,6 +32,10 @@
     width: 100%;
     padding-top: 100%;
     background: transparent;
+}
+
+.podcast img.lazyload, .podcast img.lazyloading {
+    padding-top: 100%;
 }
 
 .podcast:hover {

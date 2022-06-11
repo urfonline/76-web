@@ -9,6 +9,10 @@
 @import "styles/Podcast.css";
 @import "styles/Fonts.css";
 
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     margin: 0;
     font-family: 'Bitter', serif;
