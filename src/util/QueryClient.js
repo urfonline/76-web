@@ -22,5 +22,5 @@ export function useQuery(query, variables = {}) {
             .catch((err) => error(err));
     }
 
-    return [result, run, error];
+    return { result, run, error };
 }

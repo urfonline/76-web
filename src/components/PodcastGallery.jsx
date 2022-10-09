@@ -21,7 +21,7 @@ class SquarePlaceholder {
 }
 
 export default function PodcastGallery(vnode) {
-    let [stream, run, error] = useQuery(QPodcastGallery);
+    let { result: stream, run, error } = useQuery(QPodcastGallery);
 
     let allPodcasts = stream.map(data => data.allPodcasts);
 

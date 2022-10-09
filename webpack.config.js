@@ -22,6 +22,7 @@ module.exports = {
         contentBase: './dist',
         historyApiFallback: true,
     },
+    devtool: "eval-source-map",
     resolve: {
         modules: ['node_modules'],
         extensions: ['.js', '.jsx', '.css']

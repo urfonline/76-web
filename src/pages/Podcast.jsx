@@ -5,7 +5,7 @@ import {useQuery} from "../util/QueryClient";
 import QPodcast from "../queries/podcast.gql";
 
 export default function PodcastPage(vnode) {
-    let [stream, run, error] = useQuery(QPodcast, { slug: vnode.attrs.slug });
+    let { result: stream, run, error } = useQuery(QPodcast, { slug: vnode.attrs.slug });
 
     let podcast = stream.map(data => data.podcast);
 

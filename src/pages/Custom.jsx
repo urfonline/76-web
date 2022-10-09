@@ -4,7 +4,7 @@ import {useQuery} from "../util/QueryClient";
 import QPages from "../queries/pages.gql";
 
 export default function CustomPage(vnode) {
-    let [result, run, error] = useQuery(QPages, { slug: vnode.attrs.key });
+    let { result, run, error } = useQuery(QPages, { slug: vnode.attrs.key });
 
     let pageInfo = result.map(data => data.podcastPage);
 
